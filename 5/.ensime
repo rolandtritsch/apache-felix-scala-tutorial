@@ -1,0 +1,42 @@
+(
+:project-name "Apache Felix Tutorial Example 5"
+:project-package "tutorial.example5"
+:version "0.1-SNAPSHOT"
+
+:source-roots("./src")
+:target "./target"
+
+:use-sbt t
+:sbt-compile-on-save t
+
+:compile-jars(
+  "/Users/rtritsch/.ivy2/cache/org.apache.felix/org.osgi.core/bundles/org.osgi.core-1.4.0.jar"
+  "/Users/rtritsch/.ivy2/cache/org.apache.felix/org.osgi.compendium/bundles/org.osgi.compendium-1.4.0.jar"
+  "/Users/rtritsch/.ivy2/local/org.apache.felix/tutorial-example-2---dictonary-service_2.9.1/0.1/jars/tutorial-example-2---dictonary-service_2.9.1.jar"
+)
+:runtime-jars(
+  "/Users/rtritsch/.ivy2/cache/org.apache.felix/org.osgi.core/bundles/org.osgi.core-1.4.0.jar"
+  "/Users/rtritsch/.ivy2/cache/org.apache.felix/org.osgi.compendium/bundles/org.osgi.compendium-1.4.0.jar"
+  "/Users/rtritsch/.ivy2/local/org.apache.felix/tutorial-example-2---dictonary-service_2.9.1/0.1/jars/tutorial-example-2---dictonary-service_2.9.1.jar"
+)
+
+:formatting-prefs(
+;; :alignParameters t or nil
+;; :alignSingleLineCaseStatements t or nil
+;; :alignSingleLineCaseStatements_maxArrowIndent 1-100
+;; :compactStringConcatenation t or nil
+;; :doubleIndentClassDeclaration t or nil
+;; :indentLocalDefs t or nil
+;; :indentPackageBlocks t or nil
+:indentSpaces 2
+:indentWithTabs nil
+;; :multilineScaladocCommentsStartOnFirstLine t or nil
+;; :preserveDanglingCloseParenthesis t or nil
+;; :preserveSpaceBeforeArguments t or nil
+;; :rewriteArrowSymbols t or nil
+;; :spaceBeforeColon t or nil
+;; :spaceInsideBrackets t or nil
+;; :spaceInsideParentheses t or nil
+;; :spacesWithinPatternBinders t or nil
+)
+)
