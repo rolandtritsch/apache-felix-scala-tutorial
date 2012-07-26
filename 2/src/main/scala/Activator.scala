@@ -54,6 +54,7 @@ class Activator extends BundleActivator {
      *         false otherwise.
      */
     override def checkWord(word: String): Boolean = {
+      println("Checking " + word + " ...")
       dictionary.contains(word.toLowerCase)
     }
   }
