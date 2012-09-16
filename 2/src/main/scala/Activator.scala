@@ -4,6 +4,8 @@
 
 package tutorial.example2
 
+import scala.io.Source
+
 import org.osgi.framework.{BundleActivator, BundleContext, ServiceListener, ServiceEvent}
 
 import tutorial.example2.service.DictionaryService
@@ -24,9 +26,17 @@ class Activator extends BundleActivator {
    * @param context the framework context for the bundle.
    */
   override def start(c: BundleContext) {
-    println("Starting Dictionary Service ...")
-    val p = new java.util.Properties(); p.setProperty("Language", "english")
-    c.registerService("tutorial.example2.service.DictionaryService", new DictionaryImpl(), p)
+    println("Starting English Dictionary Service ...")
+    val pEnglish = new java.util.Properties(); pEnglish.setProperty("Language", "english")
+    c.registerService("tutorial.example2.service.DictionaryService", new DictionaryImplEnglish(), pEnglish)
+
+    println("Starting French Dictionary Service ...")
+    val pFrench = new java.util.Properties(); pFrench.setProperty("Language", "french")
+    c.registerService("tutorial.example2.service.DictionaryService", new DictionaryImplFrench(), pFrench)
+
+    println("Starting German Dictionary Service ...")
+    val pGerman = new java.util.Properties(); pGerman.setProperty("Language", "german")
+    c.registerService("tutorial.example2.service.DictionaryService", new DictionaryImplGerman(), pGerman)
   }
 
   /**
@@ -42,20 +52,35 @@ class Activator extends BundleActivator {
    * A private inner class that implements a dictionary service;
    * see DictionaryService for details of the service.
    */
-  private class DictionaryImpl extends DictionaryService {
-    // The set of words contained in the dictionary.
+  private class DictionaryImplEnglish extends DictionaryService {
+    // NOTE: Uncomment this to get a bigger english dictionary (works on the Mac)
+    // val dictionary = Source.fromFile("/usr/share/dict/words").getLines.toArray
     val dictionary = Array("welcome", "to", "the", "osgi", "tutorial")
 
-    /**
-     * Implements DictionaryService.checkWord(). Determines
-     * if the passed in word is contained in the dictionary.
-     * @param word the word to be checked.
-     * @return true if the word is in the dictionary,
-     *         false otherwise.
-     */
     override def checkWord(word: String): Boolean = {
-      println("Checking " + word + " ...")
-      dictionary.contains(word.toLowerCase)
+      val foundIt = dictionary.contains(word.toLowerCase)
+      // println("Checking (english): " + word + "/" + foundIt + " ...")
+      foundIt
+    }
+  }
+
+  private class DictionaryImplFrench extends DictionaryService {
+    val dictionary = Array("bienveue", "au", "tutorial", "osgi")
+
+    override def checkWord(word: String): Boolean = {
+      val foundIt = dictionary.contains(word.toLowerCase)
+      // println("Checking (french): " + word + "/" + foundIt + " ...")
+      foundIt
+    }
+  }
+
+  private class DictionaryImplGerman extends DictionaryService {
+    val dictionary = Array("willkommen", "zum", "osgi", "tutorial")
+
+    override def checkWord(word: String): Boolean = {
+      val foundIt = dictionary.contains(word.toLowerCase)
+      // println("Checking (german): " + word + "/" + foundIt + " ...")
+      foundIt
     }
   }
 }

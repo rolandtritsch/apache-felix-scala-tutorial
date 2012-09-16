@@ -26,18 +26,19 @@ class Activator extends BundleActivator {
    * all available dictionary services. If none are found it
    * simply prints a message and returns, otherwise it reads
    * words from standard input and checks for their existence
-   * from the first dictionary that it finds.
+   * from the first dictionary that it finds (probably english).
    * (NOTE: It is very bad practice to use the calling thread
    * to perform a lengthy process like this; this is only done
    * for the purpose of the tutorial.)
    * @param context the framework context for the bundle.
    */
   override def start(c: BundleContext) {
-    val refs: Array[ServiceReference] = c.getServiceReferences("tutorial.example2.service.DictionaryService", "(Language=*)")
-    val dictionary: DictionaryService = c.getService(refs.head).asInstanceOf[DictionaryService]
+    val refs = c.getServiceReferences("tutorial.example2.service.DictionaryService", "(Language=*)")
+    assert(refs != null)
+    val dictionary = c.getService(refs.head).asInstanceOf[DictionaryService]
     assert(dictionary != null, "Could not get Dictionary Service")
 
-    println("Enter words to to check. Enter <exit> to exit. Stop/start the bundle to restart ...")
+    println("Enter words to to check (one word per line). Enter <exit> to exit. Stop/start the bundle to restart ...")
     val words = io.Source.stdin.getLines
     var word = words.next
     while(word != "exit") {

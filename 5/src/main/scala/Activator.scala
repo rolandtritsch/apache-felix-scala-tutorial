@@ -23,7 +23,7 @@ import tutorial.example2.service.DictionaryService
  */
 class Activator extends BundleActivator {
   /**
-   * Implements BundleActivator.start(). Crates a service
+   * Implements BundleActivator.start(). Creates a service
    * tracker to monitor dictionary services and starts its "word
    * checking loop". It will not be able to check any words until
    * the service tracker find a dictionary service; any discovered

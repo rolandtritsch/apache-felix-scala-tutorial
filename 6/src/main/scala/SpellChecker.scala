@@ -17,9 +17,10 @@ trait SpellChecker {
      * number of words separated by a space and any of the following
      * punctuation marks: comma (,), period (.), exclamation mark (!),
      * question mark (?), semi-colon (;), and colon(:).
-     * @param passage the passage to spell check.
+     * 
+     * @param passage - the passage to spell check.
      * @return An array of misspelled words or null if no
      *         words are misspelled.
      */
-    def check(passage: String): String
+    def check(passage: String): Array[String]
 }
